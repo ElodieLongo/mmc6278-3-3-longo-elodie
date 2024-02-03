@@ -8,7 +8,7 @@ const {getCityInfo, getJobs} = require('./util.js');
 // Statically serve the public folder
 app.use(express.static("public"));
 
-// TODO: declare the GET route /api/city/:city
+// declare the GET route /api/city/:city
 app.get('/api/city/:city', async (req, res) => {
     const {city} = req.params;
 
@@ -24,17 +24,18 @@ const [cityInfo, jobs] = await Promise.all([
 // If no city info or jobs are found,
 // the endpoint should return a 404 status
 if (!cityInfo && !jobs) {
-    // nothing found
+// nothing found
     return res.status(404).json({ error: "Not found"});
     
 } else {
-    // successful
-    return res.status(200).json({ cityInfo, jobs});
-} 
-} catch (error) {
+// successful
 // The returned JSON object should have two keys:
 // cityInfo (with value of the getCityInfo function)
 // jobs (with value of the getJobs function
+    return res.status(200).json({ cityInfo, jobs});
+} 
+} catch (error) {
+
 console.error(error);
 return res.status(500).json({ error: "internal server error"});
 }
